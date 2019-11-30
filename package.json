@@ -11,6 +11,9 @@
     "dev": "jest --watchAll ./start",
     "test:memory": "jest --env=node --logHeapUsage ./start"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/M4ster3001/ProjetoMensagens.git"

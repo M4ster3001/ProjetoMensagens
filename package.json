@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./start.js --exec babel-node --presets babel-preset-env",
+    "test": "nodemon ./start",
+    "test:watch": "jest --watchAll",
+    "postinstall": "npm run build",
+    "dev": "jest --watchAll ./start",
+    "test:memory": "jest --env=node --logHeapUsage ./start"
   },
   "repository": {
     "type": "git",

@@ -4,3 +4,5 @@
  - criado estruturas de pastas e arquivos
  
  - criando testes para o index e database
+
+ - crinado parte de logger

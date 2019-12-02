@@ -17,7 +17,7 @@ const mensagemSchema = new Schema (
             trim: true
         },
     },
-    { timestamps: true }
+    { timestamps: true, collection: 'mensagens'  }
 )
 
 export default mongoose.model('Mensagem', mensagemSchema)

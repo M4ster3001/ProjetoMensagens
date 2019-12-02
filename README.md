@@ -6,3 +6,5 @@
  - criando testes para o index e database
 
  - criando parte de logger
+
+ - iniciando o front-end

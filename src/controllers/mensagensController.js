@@ -3,25 +3,25 @@ import Mensagens from '../models/Mensagens'
 
 //const Mensagens = mongoose.model('Mensagens', mensagemSchema);
 
-export function insertMessage( req, res ) {
+export async function insertMessage( req, res ) {
    
     const newMessage = new Mensagens( req.body );
 
-    newMessage.save(( error, mensagem ) => {
+    await newMessage.save(( error, mensagem ) => {
         if ( error ) { res.json( { result: error }); }
         res.json({ result: mensagem });
     })
 }
 
-export function viewMessage( req, res ) {
-    Mensagens.findOne({ message: req.body.message }, ( error, message ) => {
+export async function viewMessage( req, res ) {
+    await Mensagens.findOne({ message: req.body.message }, ( error, message ) => {
         if ( error ) { res.json( error ); }
         res.json( message );
     });
 }
 
-export function deleteMessage(req, res) {
-    Mensagens.findOneAndDelete({ message: req.body.message }, ( error, message ) => {
+export async function deleteMessage(req, res) {
+    await Mensagens.findOneAndDelete({ message: req.body.message }, ( error, message ) => {
         if ( error ) { res.json( error ); }
         res.json( message );
     })

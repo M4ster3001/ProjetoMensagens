@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 mongoose.set('useCreateIndex', true)
 mongoose.Promise = global.Promise
 
@@ -11,7 +11,7 @@ const txt_mensagem = 'Olá mundo !!!';
 const chr_name = 'Aldo';
 
 beforeAll( async() => {
-    const url = 'mongodb://localhost:27017/db_comunicacao_test';
+    const url = app.get('database');
     await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 })
 
@@ -41,11 +41,7 @@ async function removeAllCollections() {
         await collection.deleteMany();
     }
 }
-/*
-afterEach( async() => {
-    await removeAllCollections()
-})
-*/
+
 afterAll( async() => {
     await removeAllCollections();
     await mongoose.connection.close();

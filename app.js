@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ urlencoded: true }));
 
 //Log
-
 morgan.token('id', function getId(req) {
     return req.id
 });

@@ -5,4 +5,4 @@
  
  - criando testes para o index e database
 
- - crinado parte de logger
+ - criando parte de logger

@@ -9,7 +9,7 @@ mongoose.connection.on('error', ( error ) => { console.log('Erro: ' + error.mess
 
 //Carregamento de Models
 import Mensagem from './src/models/Mensagens'
-import Logs from './src/models/Log'
+//import Logs from './src/models/Log'
 
 import app from './app'
 

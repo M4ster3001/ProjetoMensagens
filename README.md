@@ -8,3 +8,4 @@
  - criando parte de logger
 
  - iniciando o front-end
+  - alterado logger para salvar no banco de dados

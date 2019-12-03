@@ -18,6 +18,15 @@ if( process.env.NODE_DEV == 'teste' ){
     router.post('/mensagem/delete', deleteMessage)
     router.post('/mensagem/convert', convertMessageNumber)
 
+}else{
+
+    router.get('/', function(req, res) {
+        console.log('Olá');
+    })
+    /*router.get('/', function(req, res) {
+        res.render('index', { title:  'Mensagens' })
+    })*/
+
 }
 
 export default router;

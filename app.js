@@ -7,8 +7,9 @@ require('dotenv').config({ path: 'variables.env' });
 
 const app = express();
 app.use(express.static( __dirname + '/public' ))
-app.use(bodyParse.urlencoded({ urlencoded: true }));
+
 app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({ urlencoded: true }));
 
 app.set('database', ( process.env.NODE_DEV == 'teste' ? process.env.DATABASE_TEST : process.env.DATABASE ))
 
@@ -24,15 +25,8 @@ app.use(mongooseMorgan({
         user: '',
         pass: ''
     }, 
-    {
-        skip: function (req, res) {
-            return res.statusCode < 400;
-        }
-    },
-    loggerFormat
-    //( process.env.NODE_DEV == 'teste' || process.env.NODE_DEV == 'dev' ? 'dev' : 'short' )   
+    loggerFormat  
 ) )
-//console.log(morgan( loggerFormat ))
 
 app.use('/', router);
 

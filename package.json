@@ -7,7 +7,6 @@
     "start": "nodemon ./start.js --exec babel-node --presets babel-preset-env",
     "test": "nodemon ./start",
     "test:watch": "jest --watchAll",
-    "postinstall": "npm run build",
     "dev": "jest --watchAll ./start",
     "test:memory": "jest --env=node --logHeapUsage ./start"
   },
@@ -35,8 +34,7 @@
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
     "mongoose": "^5.7.12",
-    "morgan": "^1.9.1",
-    "node-restful": "^0.2.2"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -47,6 +45,7 @@
     "babel-register": "^6.26.0",
     "jest": "^24.9.0",
     "mongoose-morgan": "^1.0.12",
+    "node-restful": "^0.2.6",
     "nodemon": "^2.0.1",
     "superagent": "^5.1.1",
     "supertest": "^4.0.2"

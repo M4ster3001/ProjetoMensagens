@@ -4,8 +4,8 @@ import Mensagens from '../models/Mensagens'
 //const Mensagens = mongoose.model('Mensagens', mensagemSchema);
 
 export async function insertMessage( req, res ) {
-   
-    const newMessage = new Mensagens( req.body );
+    console.log(req.method)
+    const newMessage = new Mensagens( req.method != 'GET' ? req.body : req.params );
 
     await newMessage.save(( error, mensagem ) => {
         if ( error ) { res.json( { result: error }); }
@@ -28,26 +28,81 @@ export async function deleteMessage(req, res) {
 }
 
 export function convertMessageNumber(req, res) {
-    
+
     let sch_number;
     let final_number_letra = '';
     let num_letra_ant;
 
-    for(const letra of req.body.message) {
-        if( letra ){
-            sch_number = searchNumber( letra );
+    if( typeof req.body.message === 'string' ){
+        for(const letra of req.body.message) {
+            if( letra ){
+                sch_number = searchNumber( letra );
 
-            if( sch_number.num_letra_atual == num_letra_ant ){
-                final_number_letra += '_' + sch_number.num_letra;
-            }else{               
-                final_number_letra += '' + sch_number.num_letra;
+                if( sch_number.num_letra_atual == num_letra_ant ){
+                    final_number_letra += '_' + sch_number.num_letra;
+                }else{               
+                    final_number_letra += '' + sch_number.num_letra;
+                }
+
+                num_letra_ant = sch_number.num_letra_atual;
+
             }
-
-            num_letra_ant = sch_number.num_letra_atual;
-
         }
+
+        res.json({ result: final_number_letra });
+
+    }else{
+        res.json({ result: 'Essa opção é para converter letras em números' })
     }
-    res.json({ result: final_number_letra });
+}
+
+
+export function convertNumberMessage(req, res) {
+    
+    let sch_letra;
+    let final_letra_number = '';
+    let num_number_ant;
+    let num_vezes = 0;
+
+    if( typeof req.body.message === 'string' ){
+        console.log( 'Numeros: ' + req.body.message )
+        for(const number of req.body.message) {
+            if( number ){
+
+                console.log( 'Ant: ' + num_number_ant )
+                console.log( 'Atual: ' + number )
+
+                if( !num_number_ant || num_number_ant === 'reset' ){
+                    num_number_ant = number;
+                }
+                
+                if( num_number_ant == number &&  number != '_' ){
+
+                    num_vezes++;
+                    num_number_ant = number;
+                    
+                }else{
+
+                    sch_letra = searchLetter( num_number_ant, num_vezes );
+                    console.log( sch_letra );
+                    final_letra_number += '' + sch_letra.num_letra;
+                    if( number != '_' ) {
+                        num_number_ant = number;
+                        num_vezes = 1;
+                    } else {
+                        num_number_ant = 'reset';
+                        num_vezes = 0;
+                    }
+                }
+
+            }
+        }
+
+        res.json({ result: final_letra_number });
+
+    }else{
+        res.json({ result: 'Essa opção é para converter números em letras' })
+    }
 }
 
 export function searchNumber( letra ) {
@@ -94,4 +149,30 @@ export function searchNumber( letra ) {
     }
 
     return { num_letra: number_letra_final, num_letra_atual: number_letra };
+}
+
+
+export function searchLetter( number, num_vezes ) {
+    //7_7773322244477776660222666_6688833777833777
+    console.log( 'Busca: ' + number )
+    console.log( 'Vezes: ' + num_vezes )
+
+    let arr_letters = {
+        0: [ ' ' ],
+        2: [ 'A', 'B', 'C' ],
+        3: [ 'D', 'E', 'F' ],
+        4: [ 'G', 'H', 'I' ],
+        5: [ 'J', 'K', 'L' ],
+        6: [ 'M', 'N', 'O' ],
+        7: [ 'P', 'Q', 'R', 'S' ],
+        8: [ 'T', 'U', 'V' ],
+        9: [ 'W', 'X', 'Y', 'Z' ]
+    }
+
+    console.log( arr_letters[ number ] );
+    console.log( arr_letters[ number ][ parseInt( num_vezes ) - 1 ] );
+
+    let letter_number_final = arr_letters[ number ][ parseInt( num_vezes ) - 1 ];
+
+    return { num_letra: letter_number_final };
 }

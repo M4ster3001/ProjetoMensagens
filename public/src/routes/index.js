@@ -2,7 +2,7 @@ import express from 'express'
 require('dotenv').config({ path: 'variables.env' });
 
 //Carregamento dos Controllers
-import { insertMessage, viewMessage, deleteMessage, convertMessageNumber } from '../controllers/mensagensController';
+import { insertMessage, viewMessage, deleteMessage, convertMessageNumber, convertNumberMessage } from '../controllers/mensagensController';
 
 const router = express.Router();
 
@@ -13,20 +13,19 @@ if( process.env.NODE_DEV == 'teste' ){
     router.get('/', (req, res) => { res.status(200).json({ message: 'Ok get' }); })
     router.post('/', (req, res) => { res.status(200).json({ message: 'Ok post' }); })
     
-    router.post('/mensagem/add', insertMessage)
-    router.post('/mensagem/view', viewMessage)
-    router.post('/mensagem/delete', deleteMessage)
-    router.post('/mensagem/convert', convertMessageNumber)
+    router.post('/mensagens/add', insertMessage)
+    router.post('/mensagens/view', viewMessage)
+    router.post('/mensagens/delete', deleteMessage)
+    router.post('/mensagens/convertMessageNumber', convertMessageNumber)
+    router.post('/mensagens/convertNumberMessage', convertNumberMessage)
 
 }else{
 
-    router.get('/', function(req, res) {
-        console.log('Olá');
-    })
-    /*router.get('/', function(req, res) {
-        res.render('index', { title:  'Mensagens' })
-    })*/
+    router.post('/mensagens/convertNumbers', convertMessageNumber)
+    router.post('/mensagens/convertLetters', convertNumberMessage)
+    router.get('/mensagens/add/:message/:message_number', insertMessage)
 
 }
+
 
 export default router;

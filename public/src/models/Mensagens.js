@@ -8,12 +8,14 @@ const mensagemSchema = new Schema (
     {
         name: {
             type: String,
-            required: 'Nome obrigatório',
             trim:  true
         },
         message: {
             type: String,
-            required: 'É necessário colocar algo',
+            trim: true
+        },
+        message_number: {
+            type: String,
             trim: true
         },
     },

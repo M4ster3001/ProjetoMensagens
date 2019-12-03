@@ -16,21 +16,21 @@ beforeAll( async() => {
 })
 
 test('Salvando uma mensagem no banco de dados', async() => {   
-    const response = await request.post('/mensagem/add').send({ name: chr_name, message: txt_mensagem })
+    const response = await request.post('/mensagens/add').send({ name: chr_name, message: txt_mensagem })
     expect( response.statusCode ).toBe( 200 );
     expect( response.body.result.message ).toBe( txt_mensagem );
     expect( response.body.result._id ).toBeTruthy();
 })
 
 test('Verificando os dados salvos no banco de dados', async() => {  
-    const response = await request.post('/mensagem/view').send({ name: chr_name, message: txt_mensagem });
+    const response = await request.post('/mensagens/view').send({ name: chr_name, message: txt_mensagem });
     expect( response.statusCode ).toBe( 200 );
     expect( response.body.message ).toBeTruthy();
     expect( response.body._id ).toBeTruthy();
 })
 
 test('Deletando registro do banco de dados', async() => {
-    const response = await request.post('/mensagem/delete').send({ message: txt_mensagem });
+    const response = await request.post('/mensagens/delete').send({ message: txt_mensagem });
     expect( response.statusCode ).toBe( 200 );
 })
 

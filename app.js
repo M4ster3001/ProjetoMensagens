@@ -1,6 +1,7 @@
 import express from 'express'
 import router from './public/src/routes/index'
 import mongooseMorgan from 'mongoose-morgan'
+import morgan from 'morgan'
 import bodyParse from 'body-parser'
 
 require('dotenv').config({ path: 'variables.env' });
@@ -25,8 +26,11 @@ app.use(mongooseMorgan({
         user: '',
         pass: ''
     }, 
-    loggerFormat  
+    {},
+    'dev'  
 ) )
+
+app.use(morgan(loggerFormat))
 
 app.use('/', router);
 

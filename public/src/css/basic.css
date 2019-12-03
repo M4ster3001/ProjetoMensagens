@@ -1,0 +1,31 @@
+    body {
+        background-color: #CCC;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .container-mensagens {
+        position: relative;
+        margin: 2vh 2vw;
+        padding: 1vh 1vw;
+        border: 1px solid #000;
+        border-radius: 5px;
+        background-color: #FFF;
+        min-height: 200px;
+    }
+
+    .container-inside-left {
+        position: relative; 
+        float: left;
+        margin-top: 7vh;
+        width: 50%;
+    }
+
+    .container-inside-right {
+        position: relative; 
+        float: right;
+        margin-top: 7vh;
+        width: 50%;
+    }

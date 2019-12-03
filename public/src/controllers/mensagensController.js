@@ -49,7 +49,11 @@ export function convertMessageNumber(req, res) {
             }
         }
 
-        res.json({ result: final_number_letra });
+        if( final_number_letra.length > 0){
+            res.json({ result: final_number_letra });
+        }else{
+            res.json({ result: 'Essa opção é para converter letras em números' });
+        }
 
     }else{
         res.json({ result: 'Essa opção é para converter letras em números' })
@@ -95,7 +99,11 @@ export function convertNumberMessage(req, res) {
             }
         }
 
-        res.json({ result: final_letra_number });
+        if( final_letra_number.length > 0 ){
+            res.json({ result: final_letra_number });
+        }else{
+            res.json({ result: 'Essa opção é para converter números em letras' });
+        }
 
     }else{
         res.json({ result: 'Essa opção é para converter números em letras' })
@@ -150,6 +158,7 @@ export function searchNumber( letra ) {
 
 
 export function searchLetter( number, num_vezes ) {
+    let letter_number_final; 
 
     let arr_letters = {
         0: [ ' ' ],
@@ -163,7 +172,11 @@ export function searchLetter( number, num_vezes ) {
         9: [ 'W', 'X', 'Y', 'Z' ]
     }
 
-    let letter_number_final = arr_letters[ number ][ parseInt( num_vezes ) - 1 ];
+    if( arr_letters[ number ].length > 0 ){
+        letter_number_final = arr_letters[ number ][ parseInt( num_vezes ) - 1 ];
+    }else{
+        letter_number_final = '';
+    }
 
     return { num_letra: letter_number_final };
 }

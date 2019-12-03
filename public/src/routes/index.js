@@ -2,7 +2,7 @@ import express from 'express'
 require('dotenv').config({ path: 'variables.env' });
 
 //Carregamento dos Controllers
-import { insertMessage, viewMessage, deleteMessage, convertMessageNumber, convertNumberMessage } from '../controllers/mensagensController';
+import { insertMessage, viewMessage, deleteMessage, convertMessageNumber, convertNumberMessage, viewsMessages } from '../controllers/mensagensController';
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ if( process.env.NODE_DEV == 'teste' ){
     
     router.post('/mensagens/add', insertMessage)
     router.post('/mensagens/view', viewMessage)
+    router.post('/mensagens/views', viewsMessages)
     router.post('/mensagens/delete', deleteMessage)
     router.post('/mensagens/convertMessageNumber', convertMessageNumber)
     router.post('/mensagens/convertNumberMessage', convertNumberMessage)
@@ -23,7 +24,8 @@ if( process.env.NODE_DEV == 'teste' ){
 
     router.post('/mensagens/convertNumbers', convertMessageNumber)
     router.post('/mensagens/convertLetters', convertNumberMessage)
-    router.get('/mensagens/add/:message/:message_number', insertMessage)
+    router.get('/mensagens/add/:message/:message_convertida', insertMessage)
+    router.post('/mensagens/views', viewsMessages)
 
 }
 

@@ -21,3 +21,9 @@ test('testando função que converte os números em letras', async () => {
     expect( response.statusCode ).toBe( 200 );
     expect( response.body.result ).toBe( 'PRECISO CONVERTER' )
 })
+
+test('testando função listar mensagens', async () => {
+    const response = await request.post('/mensagens/views').send()
+    console.log( response.body );
+    expect( response.statusCode ).toBe( 200 );
+})

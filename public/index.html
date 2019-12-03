@@ -12,7 +12,7 @@
   <title>Transformador de mensagens</title>
 
 </head>
-<body ng-app="mensagemApp" ng-controller="mensagemController">
+<body ng-app="mensagemApp" ng-controller="mensagemController" data-ng-init="getListMessages()">
 	<div class="container">
 	  <h1>Aplicação de Mensagens</h1>
 	  <div class="container container-mensagens">
@@ -39,10 +39,29 @@
       </div>
       <div class="row container-inside-right">
         <div class="col-md-12">
-          <div ng-show="loading"><h3>Loading...</h3></div>
+          <div ng-show="loading_message"><h3><center>Loading...</center></h3></div>
           <ul>
-            <li ng-repeat="message in details">{{message}}</li>
+            <li ng-model="message_convert">{{message_convert.result}}</li>
           </ul>
+        </div>
+      </div>
+      <div class="row container-inside-bottom">
+        <div class="col-md-12">        
+          <table class="table">
+              <div ng-show="loading_messages"><h3>Loading...</h3></div>
+            <thead>
+              <tr> 
+                <th><center> Mensagem original </center></th>
+                <th><center> Mensagem convertida </center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat = 'msgs in messages'>
+                <td><center>{{msgs.message}}</center></td>
+                <td><center>{{msgs.message_convertida}}</center></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 	  </div>

@@ -4,7 +4,6 @@ import Mensagens from '../models/Mensagens'
 //const Mensagens = mongoose.model('Mensagens', mensagemSchema);
 
 export async function insertMessage( req, res ) {
-    console.log(req.method)
     const newMessage = new Mensagens( req.method != 'GET' ? req.body : req.params );
 
     await newMessage.save(( error, mensagem ) => {
@@ -15,6 +14,13 @@ export async function insertMessage( req, res ) {
 
 export async function viewMessage( req, res ) {
     await Mensagens.findOne({ message: req.body.message }, ( error, message ) => {
+        if ( error ) { res.json( error ); }
+        res.json( message );
+    });
+}
+
+export async function viewsMessages( req, res ) {
+    await Mensagens.find({}, ( error, message ) => {
         if ( error ) { res.json( error ); }
         res.json( message );
     });
@@ -85,7 +91,7 @@ export function convertNumberMessage(req, res) {
                 }else{
 
                     sch_letra = searchLetter( num_number_ant, num_vezes );
-                    console.log( sch_letra );
+
                     final_letra_number += '' + sch_letra.num_letra;
                     if( number != '_' ) {
                         num_number_ant = number;

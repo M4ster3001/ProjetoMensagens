@@ -14,7 +14,7 @@ const mensagemSchema = new Schema (
             type: String,
             trim: true
         },
-        message_number: {
+        message_convertida: {
             type: String,
             trim: true
         },

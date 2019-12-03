@@ -12,6 +12,7 @@
   - alterado logger para salvar no banco de dados
   - criando a função que converte e testando
   - criando a função que converte e testando
+   - adicionado a função views e tabela das mensagens
 
   -------- CORREÇÃO ---------------
    - colocado exceções nas funções convert para não aceitar o botão errado

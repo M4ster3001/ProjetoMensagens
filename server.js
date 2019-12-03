@@ -8,10 +8,11 @@ mongoose.Promise = global.Promise
 mongoose.connection.on('error', ( error ) => { console.log('Erro: ' + error.message) })
 
 //Carregamento de Models
-import Mensagem from './src/models/Mensagens'
+import Mensagem from './public/src/models/Mensagens'
 //import Logs from './src/models/Log'
 
 import app from './app'
 
-app.set('port', process.env.PORT || 7777);
-const server = app.listen(app.get('port'), () => { console.log('Servidor rodando na porta: ' + app.get('port')); })
+app.set('port', process.env.PORT || 8080);
+
+const server = app.listen(app.get('port'), () => { console.log('Servidor rodando na porta: ' + app.get('port')); });

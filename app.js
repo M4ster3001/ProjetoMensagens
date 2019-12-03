@@ -1,13 +1,14 @@
 import express from 'express'
-import router from './src/routes/index'
+import router from './public/src/routes/index'
 import mongooseMorgan from 'mongoose-morgan'
+import bodyParse from 'body-parser'
 
 require('dotenv').config({ path: 'variables.env' });
 
 const app = express();
 app.use(express.static( __dirname + '/public' ))
-app.use(express.urlencoded({ urlencoded: true }));
-app.use(express.json());
+app.use(bodyParse.urlencoded({ urlencoded: true }));
+app.use(bodyParse.json());
 
 app.set('database', ( process.env.NODE_DEV == 'teste' ? process.env.DATABASE_TEST : process.env.DATABASE ))
 

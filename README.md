@@ -9,3 +9,4 @@
 
  - iniciando o front-end
   - alterado logger para salvar no banco de dados
+  - criando a função que converte e testando

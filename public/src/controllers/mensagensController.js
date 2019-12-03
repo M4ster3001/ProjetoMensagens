@@ -65,12 +65,9 @@ export function convertNumberMessage(req, res) {
     let num_vezes = 0;
 
     if( typeof req.body.message === 'string' ){
-        console.log( 'Numeros: ' + req.body.message )
+
         for(const number of req.body.message) {
             if( number ){
-
-                console.log( 'Ant: ' + num_number_ant )
-                console.log( 'Atual: ' + number )
 
                 if( !num_number_ant || num_number_ant === 'reset' ){
                     num_number_ant = number;
@@ -153,9 +150,6 @@ export function searchNumber( letra ) {
 
 
 export function searchLetter( number, num_vezes ) {
-    //7_7773322244477776660222666_6688833777833777
-    console.log( 'Busca: ' + number )
-    console.log( 'Vezes: ' + num_vezes )
 
     let arr_letters = {
         0: [ ' ' ],
@@ -168,9 +162,6 @@ export function searchLetter( number, num_vezes ) {
         8: [ 'T', 'U', 'V' ],
         9: [ 'W', 'X', 'Y', 'Z' ]
     }
-
-    console.log( arr_letters[ number ] );
-    console.log( arr_letters[ number ][ parseInt( num_vezes ) - 1 ] );
 
     let letter_number_final = arr_letters[ number ][ parseInt( num_vezes ) - 1 ];
 

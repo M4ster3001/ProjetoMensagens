@@ -6,13 +6,15 @@ angular.module('mensagemApp', []).controller('mensagemController', ['$scope', '$
     $scope.loading = true;
     $scope.details = '';
 
+    let des_mensagem = $("#des_mensagem").val();
+
     if(flg_tipo == 1){
       url = "http://localhost:7000/mensagens/convertNumbers";
     }else{
-      url = "http://localhost:7000/mensagens/convertLetters"
+      url = "http://localhost:7000/mensagens/convertLetters";
+      des_mensagem = des_mensagem + ' ';
     }
 
-    let des_mensagem = $("#des_mensagem").val();
     
     if( des_mensagem.length > 0){
       $http.post( url, { message: des_mensagem } )
@@ -23,7 +25,7 @@ angular.module('mensagemApp', []).controller('mensagemController', ['$scope', '$
 
         if(response.data){
           console.log(response.data['result']);
-          //$http.get( 'http://localhost:7000/mensagens/add/'+des_mensagem+'/'+response.data['result'], { message: des_mensagem, message_number: response.data } )
+          $http.get( 'http://localhost:7000/mensagens/add/'+des_mensagem+'/'+response.data['result'], { message: des_mensagem, message_number: response.data } )
         }
 
       });

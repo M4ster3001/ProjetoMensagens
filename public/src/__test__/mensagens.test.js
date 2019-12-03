@@ -16,7 +16,7 @@ test('testando função que converte a mensagem', async () => {
 })
 
 test('testando função que converte os números em letras', async () => {
-    const response = await request.post('/mensagens/convertNumberMessage').send({ message: '7_7773322244477776660222666_6688833777833777' })
+    const response = await request.post('/mensagens/convertNumberMessage').send({ message: '7_7773322244477776660222666_66888337778337770' })
 
     expect( response.statusCode ).toBe( 200 );
     expect( response.body.result ).toBe( 'PRECISO CONVERTER' )

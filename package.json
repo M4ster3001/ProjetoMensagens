@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/M4ster3001/ProjetoMensagens#readme",
   "dependencies": {
-    "angular": "^1.6.0",
+    "angular": "^1.8.0",
     "angular-route": "^1.7.9",
     "babel-polyfill": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
